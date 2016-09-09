@@ -8,7 +8,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SwiftTryCatch.h"
 
 //! Project version number for XCGLogger.
 FOUNDATION_EXPORT double XCGLogger__tvOS_VersionNumber;

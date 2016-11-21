@@ -243,7 +243,7 @@ public class XCGFileLogDestination: XCGBaseLogDestination {
     private var logFileHandle: FileHandle? = nil
     
     // MARK: - Life Cycle
-    public init(owner: XCGLogger, writeToFile: AnyObject, identifier: String = "") {
+    public init(owner: XCGLogger, writeToFile: Any, identifier: String = "") {
         super.init(owner: owner, identifier: identifier)
         
         if let writeToFile = writeToFile as? String {
@@ -552,11 +552,11 @@ public class XCGLogger: CustomDebugStringConvertible {
     }
     
     // MARK: - Setup methods
-    public class func setup(_ logLevel: LogLevel = .debug, showLogIdentifier: Bool = false, showFunctionName: Bool = true, showThreadName: Bool = false, showLogLevel: Bool = true, showFileNames: Bool = true, showLineNumbers: Bool = true, showDate: Bool = true, writeToFile: AnyObject? = nil, fileLogLevel: LogLevel? = nil) {
+    public class func setup(_ logLevel: LogLevel = .debug, showLogIdentifier: Bool = false, showFunctionName: Bool = true, showThreadName: Bool = false, showLogLevel: Bool = true, showFileNames: Bool = true, showLineNumbers: Bool = true, showDate: Bool = true, writeToFile: Any? = nil, fileLogLevel: LogLevel? = nil) {
         defaultInstance().setup(logLevel, showLogIdentifier: showLogIdentifier, showFunctionName: showFunctionName, showThreadName: showThreadName, showLogLevel: showLogLevel, showFileNames: showFileNames, showLineNumbers: showLineNumbers, showDate: showDate, writeToFile: writeToFile)
     }
     
-    public func setup(_ logLevel: LogLevel = .debug, showLogIdentifier: Bool = false, showFunctionName: Bool = true, showThreadName: Bool = false, showLogLevel: Bool = true, showFileNames: Bool = true, showLineNumbers: Bool = true, showDate: Bool = true, writeToFile: AnyObject? = nil, fileLogLevel: LogLevel? = nil) {
+    public func setup(_ logLevel: LogLevel = .debug, showLogIdentifier: Bool = false, showFunctionName: Bool = true, showThreadName: Bool = false, showLogLevel: Bool = true, showFileNames: Bool = true, showLineNumbers: Bool = true, showDate: Bool = true, writeToFile: Any? = nil, fileLogLevel: LogLevel? = nil) {
         outputLogLevel = logLevel;
         
         if let standardConsoleLogDestination = logDestination(XCGLogger.Constants.baseConsoleLogDestinationIdentifier) as? XCGConsoleLogDestination {
@@ -572,7 +572,7 @@ public class XCGLogger: CustomDebugStringConvertible {
         
         logAppDetails()
         
-        if let writeToFile: AnyObject = writeToFile {
+        if let writeToFile: Any = writeToFile {
             // We've been passed a file to use for logging, set up a file logger
             let standardFileLogDestination: XCGFileLogDestination = XCGFileLogDestination(owner: self, writeToFile: writeToFile, identifier: XCGLogger.Constants.baseFileLogDestinationIdentifier)
             
